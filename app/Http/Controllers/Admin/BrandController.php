@@ -39,15 +39,15 @@ class BrandController extends Controller
     }
     public function editBrand($id){
         $brand = Brand::find($id);
-        return view('admin.brand.edit')->with(compact('category'));
+        return view('admin.brand.edit')->with(compact('brand'));
     }
     public function updateBrand(Request $request){
-        $brand = Brand::find($request->category_id);
+        $brand = Brand::find($request->brand_id);
         if( $image = $request->File("image")){
             if(file_exists($brand->image))
             unlink($brand->image);
             $imageName = 'image'.time() .".". $image->getClientOriginalExtension();
-            $directory = 'Category-Image/';
+            $directory = 'Brand-Image/';
             $image->move($directory, $imageName);
             $imageUrl = $directory.$imageName;
         }
@@ -59,13 +59,13 @@ class BrandController extends Controller
         $brand->image = $imageUrl;
         $brand->status = $request->status;
         $brand->save();
-        return redirect()->route('category.manage')->with('message','Category Update Successfully');
+        return redirect()->route('brand.manage')->with('message','Brand Update Successfully');
     }
     public function deleteBrand($id){
         $brand = Brand::find($id);
         if(file_exists($brand->image))
         unlink($brand->image);
         $brand->delete();
-        return redirect()->route('category.manage')->with('message','Delete Successfully');
+        return redirect()->route('brand.manage')->with('message','Delete Successfully');
     }
 }

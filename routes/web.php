@@ -50,5 +50,18 @@ Route::middleware([
     Route::get('/brand-edit/{id}','Admin\BrandController@editBrand')->name('brand.edit');
     Route::post('/brand-update','Admin\BrandController@updateBrand')->name('brand.update');
     Route::get('/brand-delete/{id}','Admin\BrandController@deleteBrand')->name('brand.delete');
-
+  //Unit
+  Route::get('/unit','Admin\UnitController@createUnit')->name('unit.create');
+  Route::post('/unit-add','Admin\UnitController@storeUnit')->name('unit.store');
+  Route::get('/unit-manage','Admin\UnitController@manageUnit')->name('unit.manage');
+  Route::get('/unit-edit/{id}','Admin\UnitController@editUnit')->name('unit.edit');
+  Route::post('/unit-update','Admin\UnitController@updateUnit')->name('unit.update');
+  Route::get('/unit-delete/{id}','Admin\UnitController@deleteUnit')->name('unit.delete');
+   //Product
+   Route::get('/product','Admin\ProductController@createProduct')->name('product.create');
+   Route::post('/product-add','Admin\ProductController@storeProduct')->name('product.store');
+   Route::get('/product-manage','Admin\ProductController@manageProduct')->name('product.manage');
+   Route::get('/product-edit/{id}','Admin\ProductController@editProduct')->name('product.edit');
+   Route::post('/product-update','Admin\ProductController@updateProduct')->name('product.update');
+   Route::get('/product-delete/{id}','Admin\ProductController@deleteProduct')->name('product.delete');
 });

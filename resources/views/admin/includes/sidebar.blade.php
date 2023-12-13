@@ -69,6 +69,32 @@
             </div>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsUnit"
+            aria-expanded="true" aria-controls="collapsUnit">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Unit</span>
+        </a>
+        <div id="collapsUnit" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('unit.create') }}">Create Unit</a>
+                <a class="collapse-item" href="{{ route('unit.manage') }}">Manage Unit</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsProduct"
+            aria-expanded="true" aria-controls="collapsProduct">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Product</span>
+        </a>
+        <div id="collapsProduct" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('product.create') }}">Create Product</a>
+                <a class="collapse-item" href="{{ route('product.manage') }}">Manage Product</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
