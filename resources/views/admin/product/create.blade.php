@@ -18,12 +18,12 @@
                                     </ul>
                                 </div>
                             @endif --}}
-                            <form action="{{ route('subCategory.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row ">
                                     <label for="name" class="col-sm-3 form-label text-right">Category Name</label>
                                     <div class="col-sm-3">
-                                        <select name="category_id" id="" class="form-control">
+                                        <select name="category_id" id="categoryId" class="form-control">
                                             <option value="" disabled="" selected>Select a Category</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -32,8 +32,8 @@
                                     </div>
                                     <label for="name" class="col-sm-3 form-label text-right">Sub Category Name</label>
                                     <div class="col-sm-3">
-                                        <select name="subcategory_id" id="" class="form-control">
-                                            <option value="" disabled="" selected>Select a Category</option>
+                                        <select name="sub_category_id" id="subCategoryId" class="form-control">
+                                            <option value="" disabled="" selected>Select a SubCategory</option>
                                             @foreach ($subCategories as $subCategory)
                                                 <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
                                             @endforeach
@@ -109,8 +109,8 @@
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Product Sub Image</label>
                                     <div class="col-sm-9">
-                                        <input type="file" name="image[]" accept=".jpg, .jpeg, .png"
-                                            class="form-control-file">
+                                        <input type="file" name="sub_image[]" accept=".jpg, .jpeg, .png"
+                                            class="form-control-file" multiple>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
@@ -138,4 +138,33 @@
             </div>
         </div>
     </section>
+@endsection
+@section('custom-js')
+    <script>
+        $(document).on('change', '#categoryId', function() {
+            var categoryId = $(this).val();
+
+            $.ajax({
+                url: "{{ url('getSubcategory_By_category') }}" + "/" + categoryId,
+                method: "GET",
+                dataType: "JSON",
+                Data: {
+                    id: categoryId
+                },
+                success: function(response) {
+                    var option = '';
+                    option += ' <option value="" disabled="" selected>Select a SubCategory</option>';
+                    $.each(response, function(key, value) {
+                        option += ' <option value="' + value.id + '">' + value.name +
+                            '</option>';
+                    })
+                    $('#subCategoryId').empty().append(option);
+
+                },
+                error: function(e) {
+
+                }
+            })
+        });
+    </script>
 @endsection
