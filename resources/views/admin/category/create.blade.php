@@ -23,7 +23,7 @@
                                 <div class="form-group row ">
                                     <label for="name" class="col-sm-4 form-label text-right">Category Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="namvce" id="name" class="form-control">
+                                        <input type="text" name="name" id="name" class="form-control">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror

@@ -50,30 +50,39 @@ class ProductController extends Controller
         $product->image = $imageUrl;
         $product->save();
 
-
-        $sub_image = [];
-        if ($request->sub_image){
-            foreach($request->sub_image as $key => $image)
-            {
-                $subImageName = 'subImages'.rand(1,10000).time() .".". $image->getClientOriginalExtension();
+        if($request->hasFile('sub_image')) {
+            foreach($request->file('sub_image') as $image) {
+                $subImageName = 'subImages'.rand(1,1000).time() .".". $image->getClientOriginalExtension();
                 $directory = 'SubImage-Image/';
                 $image->move($directory, $subImageName);
-                return $directory.$subImageName;
-            }
+                $subImageUrl = $directory.$subImageName;
+            // $allImagesPathes[ ]['image'] = $subImageName;
+            $subImage = new SubImage();
+            $subImage->product_id = $product->id;
+            $subImage->image= $subImageUrl;
+            $subImage->save();
         }
-        foreach( $request->sub_image as $image ){
-        // if( $subImages){
-        //     $subImageName = '$subImages'.rand(1,10000).time() .".". $subImages->getClientOriginalExtension();
-        //     $directory = 'SubImage-Image/';
-        //     $subImages->move($directory, $subImageName);
-        //     return $directory.$subImageName;
-        // }
-
-        $subImage = new SubImage();
-        $subImage->product_id = $product->id;
-        $subImage->image= $image;
-        $subImage->save();
+       
         }
         return redirect()->back()->with('message','Product Create Successfully');
     }
+    public function manageProduct(){
+        return view("admin.product.manage",[
+            "products"=>Product::all(),
+            
+        ]);
+    }
+    public function editProduct($id){
+        // $categories = Category::all();
+        // return view("admin.product.create")->with(compact("categories"));
+        return view("admin.product.edit",[
+            "product"=> Product::find($id),
+            "categories"=> Category::all(),
+            "subCategories"=> SubCategory::all(),
+            "brands"=>Brand::all(),
+            "units"=>Unit::all(),
+            "subImage"=>subImage::all()
+        ]);
+    }
+
 }

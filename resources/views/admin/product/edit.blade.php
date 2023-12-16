@@ -3,10 +3,10 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-10 mx-auto">
+                <div class="col-sm-12 mx-auto">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Sub-subCategory</h4>
+                            <h4>Update Product</h4>
                         </div>
                         <div class="card-body">
                             {{-- @if ($errors->any())
@@ -18,65 +18,140 @@
                                     </ul>
                                 </div>
                             @endif --}}
-                            <form action="{{ route('subCategory.update') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('product.update') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="subCategory_id" value="{{ $subCategory->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div class="form-group row ">
-                                    <label for="name" class="col-sm-4 form-label text-right">Category Name</label>
-                                    <div class="col-sm-8">
-                                        <select name="category_id" id="" class="form-control">
+                                    <label for="name" class="col-sm-3 form-label text-right">Category Name</label>
+                                    <div class="col-sm-3">
+                                        <select name="category_id" id="categoryId" class="form-control">
+                                            <option value="" disabled="" selected>Select a Category</option>
                                             @foreach ($categories as $category)
-                                                @if ($category->id == $subCategory->category_id)
-                                                    <option value="{{ $category->id }}" selected>{{ $category->name }}
-                                                    </option>
+                                              @if($category->id == $product->category_id)
+                                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                              @else
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                               @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <label for="name" class="col-sm-3 form-label text-right">Sub Category Name</label>
+                                    <div class="col-sm-3">
+                                        <select name="sub_category_id" id="subCategoryId" class="form-control">
+                                            <option value="" disabled="" selected>Select a SubCategory</option>
+                                            @foreach ($subCategories as $subCategory)
+                                                @if($subCategory->id == $product->sub_category_id)
+                                                <option value="{{ $subCategory->id }}" selected>{{ $subCategory->name }}</option>
                                                 @else
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endif
+                                                <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                               @endif
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="name" class="col-sm-4 form-label text-right">Sub-subCategory
-                                        Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="name" id="name" value="{{ $subCategory->name }}"
-                                            class="form-control">
-                                        @error('name')
+                                    <label for="name" class="col-sm-3 form-label text-right">Brand</label>
+                                    <div class="col-sm-3">
+                                        <select name="brand_id" id="" class="form-control">
+                                            <option value="" disabled="" selected>Select a Brand</option>
+                                            @foreach ($brands as $brand)
+                                            @if($brand->id== $product->brand_id)
+                                                <option value="{{ $brand->id }}" selected>{{ $brand->name }}</option>
+                                            @else
+                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <label for="name" class="col-sm-3 form-label text-right">Unit</label>
+                                    <div class="col-sm-3">
+                                        <select name="unit_id" id="" class="form-control">
+                                            <option value="" disabled="" >Select a Brand</option>
+                                            @foreach ($units as $unit)
+                                            @if($unit->id == $product->unit_id)
+                                                <option value="{{ $unit->id }}" selected>{{ $unit->name }}</option>
+                                            @else
+                                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                            @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="" class="col-sm-3 form-label text-right">Regular Price</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="regular_price" value="{{$product->regular_price}}" id="regular_price" class="form-control">
+                                        @error('regular_price')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <label for="" class="col-sm-3 form-label text-right">Selling Price</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="selling_price" value="{{$product->selling_price}}" id="selling_price" class="form-control">
+                                        @error('selling_price')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row text-right">
-                                    <label for="" class="col-sm-4 form-label">subCategory Description</label>
-                                    <div class="col-sm-8">
-                                        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $subCategory->description }}</textarea>
+                                    <label for="" class="col-sm-3 form-label">Product Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="name" value="{{$product->name}}" id="name" class="form-control">
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="" class="col-sm-4 form-label text-right">subCategory Image</label>
-                                    <div class="col-sm-8">
-                                        <img src="{{ asset($subCategory->image) }}" alt=""
-                                            style="height: 60px;width:80px">
+                                    <label for="" class="col-sm-3 form-label text-right">Short
+                                        Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea name="short_description" id="" cols="30" rows="4" class="form-control">{{$product->short_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="" class="col-sm-3 form-label text-right">Long
+                                        Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea name="long_description" id="" cols="30" rows="4" class="form-control">{{$product->long_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="" class="col-sm-3 form-label text-right">Product Image</label>
+                                    <div class="col-sm-9">
+                                        <img src="{{asset($product->image)}}" alt="" style="height: 70px;width:80px">
                                         <input type="file" name="image" accept=".jpg, .jpeg, .png"
                                             class="form-control-file">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="" class="col-sm-4 form-label text-right">subCategory Status</label>
-                                    <div class="col-sm-8">
+                                    <label for="" class="col-sm-3 form-label text-right">Product Sub Image</label>
+                                    <div class="col-sm-9">
+                                        @foreach($product->subImages as $subimage)
+                                        <img src="{{asset($subimage->image)}}" alt="" style="height: 80px;width:60px;">
+                                        @endforeach
+                                       
+                                        <input type="file" name="sub_image[]" accept=".jpg, .jpeg, .png"
+                                            class="form-control-file" multiple>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="" class="col-sm-3 form-label text-right">Product Status</label>
+                                    <div class="col-sm-9">
                                         <label for="Publishhed"><input id="Publishhed" type="radio" name="status"
-                                                {{ $subCategory->status == 1 ? 'checked' : '' }} value="1">
+                                                value="1">
                                             Publishhed</label>
                                         <label for="Unpublished"><input id="Unpublished" type="radio" name="status"
-                                                {{ $subCategory->status == 0 ? 'checked' : '' }} value="0">
+                                                value="0">
                                             Unpublished</label>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="" class="col-sm-4 form-label text-right"></label>
-                                    <div class="col-sm-8">
-                                        <button class="btn btn-outline-success" type="submit">Update subCategory</button>
+                                    <label for="" class="col-sm-3 form-label text-right"></label>
+                                    <div class="col-sm-9">
+                                        <button class="btn btn-outline-success" type="submit">Create New
+                                            Product</button>
                                     </div>
                                 </div>
                             </form>
@@ -86,4 +161,33 @@
             </div>
         </div>
     </section>
+@endsection
+@section('custom-js')
+    <script>
+        $(document).on('change', '#categoryId', function() {
+            var categoryId = $(this).val();
+
+            $.ajax({
+                url: "{{ url('getSubcategory_By_category') }}" + "/" + categoryId,
+                method: "GET",
+                dataType: "JSON",
+                Data: {
+                    id: categoryId
+                },
+                success: function(response) {
+                    var option = '';
+                    option += ' <option value="" disabled="" selected>Select a SubCategory</option>';
+                    $.each(response, function(key, value) {
+                        option += ' <option value="' + value.id + '">' + value.name +
+                            '</option>';
+                    })
+                    $('#subCategoryId').empty().append(option);
+
+                },
+                error: function(e) {
+
+                }
+            })
+        });
+    </script>
 @endsection

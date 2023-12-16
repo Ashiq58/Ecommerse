@@ -14,12 +14,15 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
                         <thead>
                             <tr>
                                 <th>Sl</th>
                                 <th>Category Name</th>
-                                <th>SubCategory Name</th>
+                                <th>Sub-Ct Name</th>
+                                <th>Brand Name</th>
+                                <th>Unit</th>
+                                <th>product Name</th>
                                 <th>Description</th>
                                 <th>Status</th>
                                 <th>Image</th>
@@ -28,9 +31,12 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Sl</th>
+                            <th>Sl</th>
                                 <th>Category Name</th>
-                                <th>SubCategory Name</th>
+                                <th>Sub-Ct Name</th>
+                                <th>Brand Name</th>
+                                <th>Unit</th>
+                                <th>product Name</th>
                                 <th>Description</th>
                                 <th>Status</th>
                                 <th>Image</th>
@@ -38,22 +44,25 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($subCategories as $subCategory)
+                            @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $subCategory->Category->name }}</td>
-                                    <td>{{ $subCategory->name }}</td>
-                                    <td>{{ $subCategory->description }}</td>
-                                    <td>{{ $subCategory->status == 1 ? 'Published' : 'Unpublished' }}</td>
+                                    <td>{{ $product->Category->name }}</td>
+                                    <td>{{ $product->subCategory->name }}</td>
+                                    <td>{{ $product->Brand->name }}</td>
+                                    <td>{{ $product->Unit->name }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->short_description }}</td>
+                                    <td>{{ $product->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                     <td>
-                                        <img src="{{ asset($subCategory->image) }}" alt=""
+                                        <img src="{{ asset($product->image) }}" alt=""
                                             style="height: 60px;width:80px">
                                     </td>
                                     <td>
-                                        <a href="{{ route('subCategory.edit', ['id' => $subCategory->id]) }}"
-                                            class="btn btn-success">Edit</a>
-                                        <a href="{{ route('subCategory.delete', ['id' => $subCategory->id]) }}"
-                                            class="btn btn-danger" onclick="return confirm('are you Sure?')">Delete</a>
+                                        <a href="{{ route('product.edit', ['id' => $product->id]) }}"
+                                            class="btn btn-success" style="font-size: x-small;width:45px;height:25px">Edit</a>
+                                        <a href="{{ route('product.delete', ['id' => $product->id]) }}"
+                                            class="btn btn-danger" onclick="return confirm('are you Sure?')" style="font-size: x-small;width:45px;height:25px">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
