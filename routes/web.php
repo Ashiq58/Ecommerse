@@ -65,4 +65,8 @@ Route::middleware([
    Route::post('/product-update','Admin\ProductController@updateProduct')->name('product.update');
    Route::get('/product-delete/{id}','Admin\ProductController@deleteProduct')->name('product.delete');
    Route::get('/getSubcategory_By_category/{id}','Admin\ProductController@getSubcategory')->name('getSubcategory_By_category');
+   Route::post('/deleteSubImage/{id}','Admin\ProductController@deleteSubImage')->name('deleteSubImage');
+
+
+
 });

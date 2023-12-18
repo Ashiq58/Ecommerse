@@ -153,10 +153,9 @@
                 },
                 success: function(response) {
                     var option = '';
-                    option += ' <option value="" disabled="" selected>Select a SubCategory</option>';
+                    option += '<option value="" disabled="" selected>Select a SubCategory</option>';
                     $.each(response, function(key, value) {
-                        option += ' <option value="' + value.id + '">' + value.name +
-                            '</option>';
+                        option += '<option value="' + value.id + '">' + value.name + '</option>'
                     })
                     $('#subCategoryId').empty().append(option);
 
@@ -165,6 +164,7 @@
 
                 }
             })
+
         });
     </script>
 @endsection

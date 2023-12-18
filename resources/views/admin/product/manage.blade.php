@@ -5,25 +5,26 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800 text-center"> Sub-Category Table</h1>
+        <h1 class="h3 mb-2 text-gray-800 text-center"> ProductTable</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Sub-Category Table</h6>
+                <h6 class="m-0 font-weight-bold text-primary">ProductTable</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: small">
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Category Name</th>
-                                <th>Sub-Ct Name</th>
-                                <th>Brand Name</th>
+                                <th>Category</th>
+                                <th>product</th>
+                                <th>Brand</th>
                                 <th>Unit</th>
-                                <th>product Name</th>
-                                <th>Description</th>
+                                <th>Product Name</th>
+                                <th>Regular Price</th>
+                                <th>Selling Price</th>
                                 <th>Status</th>
                                 <th>Image</th>
                                 <th>Action</th>
@@ -31,13 +32,14 @@
                         </thead>
                         <tfoot>
                             <tr>
-                            <th>Sl</th>
-                                <th>Category Name</th>
-                                <th>Sub-Ct Name</th>
-                                <th>Brand Name</th>
+                                <th>Sl</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
+                                <th>Brand</th>
                                 <th>Unit</th>
-                                <th>product Name</th>
-                                <th>Description</th>
+                                <th>Product Name</th>
+                                <th>Regular Price</th>
+                                <th>Selling Price</th>
                                 <th>Status</th>
                                 <th>Image</th>
                                 <th>Action</th>
@@ -52,7 +54,8 @@
                                     <td>{{ $product->Brand->name }}</td>
                                     <td>{{ $product->Unit->name }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->short_description }}</td>
+                                    <td>{{ $product->regular_price }}</td>
+                                    <td>{{ $product->selling_price }}</td>
                                     <td>{{ $product->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                     <td>
                                         <img src="{{ asset($product->image) }}" alt=""
@@ -60,9 +63,9 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('product.edit', ['id' => $product->id]) }}"
-                                            class="btn btn-success" style="font-size: x-small;width:45px;height:25px">Edit</a>
+                                            class="btn btn-success">Edit</a>
                                         <a href="{{ route('product.delete', ['id' => $product->id]) }}"
-                                            class="btn btn-danger" onclick="return confirm('are you Sure?')" style="font-size: x-small;width:45px;height:25px">Delete</a>
+                                            class="btn btn-danger" onclick="return confirm('are you Sure?')">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

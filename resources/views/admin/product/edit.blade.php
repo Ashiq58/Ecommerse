@@ -25,26 +25,27 @@
                                     <label for="name" class="col-sm-3 form-label text-right">Category Name</label>
                                     <div class="col-sm-3">
                                         <select name="category_id" id="categoryId" class="form-control">
-                                            <option value="" disabled="" selected>Select a Category</option>
-                                            @foreach ($categories as $category)
-                                              @if($category->id == $product->category_id)
-                                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                              @else
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                               @endif
+                                            @foreach ($categorie as $categories)
+                                                @if ($categories->id == $product->category_id)
+                                                    <option value="{{ $categories->id }}" selected>{{ $categories->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
                                     <label for="name" class="col-sm-3 form-label text-right">Sub Category Name</label>
                                     <div class="col-sm-3">
                                         <select name="sub_category_id" id="subCategoryId" class="form-control">
-                                            <option value="" disabled="" selected>Select a SubCategory</option>
-                                            @foreach ($subCategories as $subCategory)
-                                                @if($subCategory->id == $product->sub_category_id)
-                                                <option value="{{ $subCategory->id }}" selected>{{ $subCategory->name }}</option>
+                                            @foreach ($subCategory as $subCategories)
+                                                @if ($subCategories->id == $product->sub_category_id)
+                                                    <option value="{{ $subCategories->id }}" selected>
+                                                        {{ $subCategories->name }}</option>
                                                 @else
-                                                <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
-                                               @endif
+                                                    <option value="{{ $subCategories->id }}">{{ $subCategories->name }}
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -53,26 +54,26 @@
                                     <label for="name" class="col-sm-3 form-label text-right">Brand</label>
                                     <div class="col-sm-3">
                                         <select name="brand_id" id="" class="form-control">
-                                            <option value="" disabled="" selected>Select a Brand</option>
-                                            @foreach ($brands as $brand)
-                                            @if($brand->id== $product->brand_id)
-                                                <option value="{{ $brand->id }}" selected>{{ $brand->name }}</option>
-                                            @else
-                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                            @endif
+                                            @foreach ($brand as $brands)
+                                                @if ($brands->id == $product->brand_id)
+                                                    <option value="{{ $brands->id }}" selected>{{ $brands->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $brands->id }}">{{ $brands->name }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
                                     <label for="name" class="col-sm-3 form-label text-right">Unit</label>
                                     <div class="col-sm-3">
                                         <select name="unit_id" id="" class="form-control">
-                                            <option value="" disabled="" >Select a Brand</option>
-                                            @foreach ($units as $unit)
-                                            @if($unit->id == $product->unit_id)
-                                                <option value="{{ $unit->id }}" selected>{{ $unit->name }}</option>
-                                            @else
-                                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                            @endif
+                                            @foreach ($unit as $units)
+                                                @if ($units->id == $product->unit_id)
+                                                    <option value="{{ $units->id }}" selected>{{ $units->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $units->id }}">{{ $units->name }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -80,14 +81,16 @@
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Regular Price</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="regular_price" value="{{$product->regular_price}}" id="regular_price" class="form-control">
+                                        <input type="text" name="regular_price" value="{{ $product->regular_price }}"
+                                            id="regular_price" class="form-control">
                                         @error('regular_price')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <label for="" class="col-sm-3 form-label text-right">Selling Price</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="selling_price" value="{{$product->selling_price}}" id="selling_price" class="form-control">
+                                        <input type="text" name="selling_price" value="{{ $product->selling_price }}"
+                                            id="selling_price" class="form-control">
                                         @error('selling_price')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -96,7 +99,8 @@
                                 <div class="form-group row text-right">
                                     <label for="" class="col-sm-3 form-label">Product Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" value="{{$product->name}}" id="name" class="form-control">
+                                        <input type="text" name="name" id="name" value="{{ $product->name }}"
+                                            class="form-control">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -106,20 +110,21 @@
                                     <label for="" class="col-sm-3 form-label text-right">Short
                                         Description</label>
                                     <div class="col-sm-9">
-                                        <textarea name="short_description" id="" cols="30" rows="4" class="form-control">{{$product->short_description}}</textarea>
+                                        <textarea name="short_description" id="" cols="30" rows="4" class="form-control">{{ $product->short_description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Long
                                         Description</label>
                                     <div class="col-sm-9">
-                                        <textarea name="long_description" id="" cols="30" rows="4" class="form-control">{{$product->long_description}}</textarea>
+                                        <textarea name="long_description" id="" cols="30" rows="4" class="form-control">{{ $product->long_description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Product Image</label>
                                     <div class="col-sm-9">
-                                        <img src="{{asset($product->image)}}" alt="" style="height: 70px;width:80px">
+                                        <img src="{{ asset($product->image) }}" alt=""
+                                            style="height: 60px;Width:80px">
                                         <input type="file" name="image" accept=".jpg, .jpeg, .png"
                                             class="form-control-file">
                                     </div>
@@ -127,30 +132,33 @@
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Product Sub Image</label>
                                     <div class="col-sm-9">
-                                        @foreach($product->subImages as $subimage)
-                                        <img src="{{asset($subimage->image)}}" alt="" style="height: 80px;width:60px;">
+                                        @foreach ($product->subImages as $subImage)
+                                            <img src="{{ asset($subImage->image) }}" alt=""
+                                                style="height: 60px;width:80px">
+                                            {{-- <form action=" {{ route('deleteSubImage', $subImage->id) }}" method="post">
+                                                @csrf
+                                                <button class="btn text-danger d-flex">x</button>
+                                            </form> --}}
                                         @endforeach
-                                       
                                         <input type="file" name="sub_image[]" accept=".jpg, .jpeg, .png"
                                             class="form-control-file" multiple>
-                                        
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right">Product Status</label>
                                     <div class="col-sm-9">
                                         <label for="Publishhed"><input id="Publishhed" type="radio" name="status"
-                                                value="1">
+                                                {{ $product->status == 1 ? 'checked' : '' }} value="1">
                                             Publishhed</label>
                                         <label for="Unpublished"><input id="Unpublished" type="radio" name="status"
-                                                value="0">
+                                                {{ $product->status == 0 ? 'checked' : '' }} value="0">
                                             Unpublished</label>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="" class="col-sm-3 form-label text-right"></label>
                                     <div class="col-sm-9">
-                                        <button class="btn btn-outline-success" type="submit">Create New
+                                        <button class="btn btn-outline-success" type="submit">Update
                                             Product</button>
                                     </div>
                                 </div>
@@ -176,10 +184,9 @@
                 },
                 success: function(response) {
                     var option = '';
-                    option += ' <option value="" disabled="" selected>Select a SubCategory</option>';
+                    option += '<option value="" disabled="" selected>Select a SubCategory</option>';
                     $.each(response, function(key, value) {
-                        option += ' <option value="' + value.id + '">' + value.name +
-                            '</option>';
+                        option += '<option value="' + value.id + '">' + value.name + '</option>'
                     })
                     $('#subCategoryId').empty().append(option);
 
@@ -188,6 +195,7 @@
 
                 }
             })
+
         });
     </script>
 @endsection
