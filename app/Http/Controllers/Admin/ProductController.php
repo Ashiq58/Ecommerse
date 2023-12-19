@@ -125,6 +125,20 @@ class ProductController extends Controller
         $subImage->find($id)->delete();
         return back();
     }
+    public function deleteProduct($id){
+        $product = Product::find($id);
+        if(file_exists($product->image)){
+        unlink($product->image);
+        }
+        $images = SubImage::where('product_id',$product->id)->get();
+        foreach($images as $image){
+            if(file_exists($image->image)){
+                unlink($image->image);
+            }
+        }
+        $product->delete();
+        return redirect()->route('product.manage')->with('message','Delete Product Successfully');
+    }
 
 
 }

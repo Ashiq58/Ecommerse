@@ -128,10 +128,9 @@
                                         <input type="file" name="image" accept=".jpg, .jpeg, .png"
                                             class="form-control-file">
                                     </div>
-
-                                    <label for="" class="col-sm-3 form-label text-right">Product Sub Image</label>
-                                    <div class="col-sm-3">
-                                    
+                                    <label for="" class="col-sm-3 form-label text-right ">Product Sub
+                                        Image</label>
+                                    <div class="col-sm-3 ">
                                         <input type="file" name="sub_image[]" accept=".jpg, .jpeg, .png"
                                             class="form-control-file" multiple>
                                     </div>
@@ -155,18 +154,21 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="form-group row float-right ">
-                            <label for="" class="col-sm-6 form-label ">Product Sub Image</label>
-                            @foreach ($product->subImages as $subImage)
+                            <div class="form-group row float-right">
+                                <label for="" class="col-sm-6 form-label text-right ">Product Sub
+                                    Image</label>
+                                @foreach ($product->subImages as $subImage)
                                     <div class="col-sm-3 ">
-                                            <img src="{{ asset($subImage->image) }}" alt=""
-                                                style="height: 60px;width:80px">
-                                            <form action=" {{ route('deleteSubImage', $subImage->id) }}" method="post">
-                                                @csrf
-                                                <button class="btn text-dange display-block">x</button>
-                                            </form> 
+
+                                        <img src="{{ asset($subImage->image) }}" alt=""
+                                            style="height: 60px;width:80px">
+                                        <form action=" {{ route('deleteSubImage', $subImage->id) }}" method="post">
+                                            @csrf
+                                            <button class="btn text-danger ">x</button>
+                                        </form>
                                     </div>
-                            @endforeach
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
