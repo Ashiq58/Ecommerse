@@ -22,6 +22,7 @@ Route::get('/', 'Front\FrontController@index')->name('home');
 Route::get('/shop-page', 'Front\FrontController@shopPage')->name('shop');
 Route::get('/category-page', 'Front\FrontController@category')->name('category-page');
 Route::get('/subCategory-page/{id}', 'Front\FrontController@subCategory')->name('subCategory-page');
+Route::get('/subCategory-product-details/{id}', 'Front\FrontController@subCategoryProductDetails')->name('subCategory-product-details');
 
 
 //admin Panel
