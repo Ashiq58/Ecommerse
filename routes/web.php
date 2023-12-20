@@ -17,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//Frontend
 Route::get('/', 'Front\FrontController@index')->name('home');
+Route::get('/shop-page', 'Front\FrontController@shopPage')->name('shop');
+Route::get('/category-page', 'Front\FrontController@category')->name('category-page');
+Route::get('/subCategory-page/{id}', 'Front\FrontController@subCategory')->name('subCategory-page');
 
 
+//admin Panel
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
