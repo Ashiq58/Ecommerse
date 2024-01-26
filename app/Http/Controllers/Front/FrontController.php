@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\SubImage;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+    protected $product;
     public function index(){
         return view("front.home");
     }
@@ -25,8 +27,12 @@ class FrontController extends Controller
         return view('front.subCategory.subCategory')->with(compact('products','subCategory'));
     }
     public function subCategoryProductDetails($id){
-        $products = Product::find($id);
-        return view('front.subCategory.details')->with(compact('products'));
+        $product = Product::find($id);
+        $subImages = SubImage::where('product_id',$product->id)->get();
+        return view('front.subCategory.details')->with(compact('product','subImages'));
     }
+        
+    
+   
 
 }

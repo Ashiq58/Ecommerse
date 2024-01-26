@@ -25,6 +25,7 @@ Route::get('/subCategory-page/{id}', 'Front\FrontController@subCategory')->name(
 Route::get('/subCategory-product-details/{id}', 'Front\FrontController@subCategoryProductDetails')->name('subCategory-product-details');
 
 
+
 //admin Panel
 Route::middleware([
     'auth:sanctum',

@@ -179,8 +179,9 @@
                                         <h6 class="text-muted ml-2"><del>{{ $product->regular_price }}</del></h6>
                                     </div>
                                 </div>
+                                
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="{{route('subCategory-product-details',['id'=>$product->id])}}" class="btn btn-sm text-dark p-0"><i
+                                    <a href="{{route('subCategory-product-details',['id' =>$product->id ])}}" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                                     <a href="" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
@@ -194,4 +195,32 @@
         </div>
     </div>
     <!-- Shop End -->
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="{{asset('/')}}front/img/cat-1.jpg" alt="" class="img-fluid w-100" style="height: 250px;" >
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Product Name</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

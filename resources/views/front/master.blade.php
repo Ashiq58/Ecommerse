@@ -17,6 +17,8 @@
     @yield('body')
     @include('front.includes.footer')
     @include('front.includes.footer-js')
+
+
 </body>
 
 </html>

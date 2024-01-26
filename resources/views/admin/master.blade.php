@@ -63,7 +63,7 @@
     @if (Session::has('message'))
         <script>
             $(document).ready(function() {
-                toastr.success('{{ Session::get('message') }}')
+                toastr.success('{{ Session::get(message) }}')
             });
         </script>
     @endif

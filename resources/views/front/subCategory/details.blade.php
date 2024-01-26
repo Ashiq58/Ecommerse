@@ -1,9 +1,7 @@
 @extends('front.master')
-
 @section('body')
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
+ <!-- Page Header Start -->
+ <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Detail</h1>
             <div class="d-inline-flex">
@@ -20,32 +18,27 @@
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
-            
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 
-                    <div class="carousel-inner border">
-                    @foreach($products->subImages as $key => $product) 
-                        <div class="carousel-item {{$key==0 ? 'active': ''}} ">
-                       
-                            <img class="w-100 " src="{{asset($product->image)}}" alt="Image" style="height: 450px;">
-                            
+                <div class="carousel-inner border">
+                @foreach($subImages as $key => $subImage)
+                        <div class="carousel-item {{$key==0?'active': ''}}">
+                            <img class="w-100" src="{{asset($subImage->image)}}" alt="Image" style="height:450px;">
                         </div>
-                    @endforeach
-                        
+                 @endforeach
                     </div>
+                    
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
                     </a>
                     <a class="carousel-control-next" href="#product-carousel" data-slide="next">
                         <i class="fa fa-2x fa-angle-right text-dark"></i>
                     </a>
-                    
                 </div>
-                
             </div>
 
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">{{$products->name}}</h3>
+                <h3 class="font-weight-semi-bold">{{$product->name}}</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -56,9 +49,9 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">BD {{$products->selling_price}}</h3>
-                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
-                <div class="d-flex mb-3">
+                <h3 class="font-weight-semi-bold mb-4">BDT {{$product->selling_price}}</h3>
+                <p class="mb-4">{{$product->short_description}}</p>
+                <!-- <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     <form>
                         <div class="custom-control custom-radio custom-control-inline">
@@ -107,7 +100,7 @@
                             <label class="custom-control-label" for="color-5">Green</label>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -341,4 +334,5 @@
         </div>
     </div>
     <!-- Products End -->
+
 @endsection
